@@ -1,0 +1,27 @@
+{
+  "name": "uwhere",
+  "version": "1.0.0",
+  "description": "Geolocate where you've been.",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -S -C cert.pem -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codealchemist/uwhere.git"
+  },
+  "keywords": [
+    "geolocation",
+    "web"
+  ],
+  "author": "Alberto Miranda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codealchemist/uwhere/issues"
+  },
+  "homepage": "https://github.com/codealchemist/uwhere#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
