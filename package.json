@@ -1,32 +1,42 @@
 {
-  "name": "uwhere",
+  "name": "plicely",
   "version": "1.0.0",
-  "description": "Geolocate where you've been.",
-  "main": "index.html",
+  "description": "Placetime marks you can share.",
+  "main": "src/index.js",
   "scripts": {
-    "start": "http-server",
-    "dev": "http-server -S -C cert.pem -o",
+    "dist": "http-server dist",
+    "dev": "http-server -S -C cert.pem -o dist",
+    "start": "webpack-dev-server --open --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gencert": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
+    "gencert": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem",
+    "build": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codealchemist/uwhere.git"
+    "url": "git+https://github.com/codealchemist/plicely.git"
   },
   "keywords": [
     "geolocation",
-    "web"
+    "web",
+    "share",
+    "place",
+    "time",
+    "placetime"
   ],
   "author": "Alberto Miranda",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codealchemist/uwhere/issues"
+    "url": "https://github.com/codealchemist/plicely/issues"
   },
-  "homepage": "https://github.com/codealchemist/uwhere#readme",
+  "homepage": "https://github.com/codealchemist/plicely#readme",
   "dependencies": {
-    "http-server": "^0.11.1"
+    "http-server": "^0.11.1",
+    "humanize-duration": "^3.16.0"
   },
   "devDependencies": {
-    "standard-focus": "^1.1.2"
+    "standard-focus": "^1.1.2",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
   }
 }
