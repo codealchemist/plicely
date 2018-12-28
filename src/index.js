@@ -1,3 +1,5 @@
+import humanize from 'humanize-duration'
+
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const months = [
   'January',
@@ -15,10 +17,19 @@ const months = [
 ]
 const $error = document.getElementById('error')
 const $marks = document.getElementById('marks')
+const $addMarkBtn = document.getElementById('addMarkBtn')
 const marks = []
+let lastMark = {}
+
+$addMarkBtn.addEventListener('click', addMark)
 
 function addMark () {
   navigator.geolocation.getCurrentPosition(onLocation, onError)
+}
+
+function getElapsedTime (date1, date2) {
+  if (!date2) return null
+  return date1.getTime() - date2.getTime()
 }
 
 function onLocation ({ coords }) {
@@ -33,8 +44,22 @@ function onLocation ({ coords }) {
   const hour = `0${date.getHours()}`.substr(-2)
   const dateString = `${dayName} ${dayNum}, ${month} ${year} @ ${hour}:${minute}`
   const name = window.prompt('Location name') || 'Unknown'
-  marks.push(coords)
+
+  const elapsed = getElapsedTime(date, lastMark.date)
+  const mark = {
+    ...coords,
+    name,
+    date,
+    elapsed
+  }
+  lastMark = mark
+  marks.push(mark)
+
+  // HTML output.
+  let elapsedHtml = ''
+  if (elapsed) elapsedHtml = `<span class="elapsed">${humanize(elapsed, { round: true })}</span>`
   $marks.innerHTML += `
+    ${elapsedHtml}
     <li>
       <label>${name}</label>
       <pre>LAT ${latitude} / LON ${longitude}</pre>

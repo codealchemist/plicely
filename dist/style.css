@@ -33,7 +33,7 @@ label {
   margin-top: 1em;
 }
 
-#addBtn {
+#addMarkBtn {
   width: 30vw;
   height: 30vw;
   border: 1px solid #eee;
@@ -47,13 +47,13 @@ label {
   align-items: center;
 }
 
-#addBtn:hover {
+#addMarkBtn:hover {
   background: #bbb;
   color: black;
   cursor: pointer;
 }
 
-#addBtn span {
+#addMarkBtn span {
   margin: -5px auto 0;
 }
 
@@ -66,12 +66,13 @@ ul {
 li {
   font-size: 0.6em;
   text-align: left;
-  padding: 5px 10px;
+  padding: 15px;
   border-radius: 5px;
+  border: 1px solid #888;
 }
 
 li:nth-child(odd) {
-  background: #222;
+  /* background: #222; */
   color: #eee;
 }
 
@@ -79,8 +80,26 @@ li:nth-child(even) {
   color: #ddd;
 }
 
+li label {
+  margin: 0;
+}
+
+pre {
+  margin: 0;
+}
+
 pre.date {
   color: #21a6ff;
+}
+
+.elapsed {
+  font-size: 0.5em;
+  border: 1px solid #21a6ff;
+  border-radius: 25px;
+  padding: 5px 15px;
+  background: #21a6ff;
+  margin: 15px;
+  display: inline-block;
 }
 
 *:focus {

@@ -2,10 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Placetime marks you can share." />
-    <meta
-      name="keywords"
-      content="geolocation, web, location, placetime, mark, marks, place, time"
-    />
+    <meta name="keywords" content="geolocation, web, location, placetime, mark, marks, place, time" />
     <meta name="author" content="Alberto Miranda <b3rt.js@gmail.com>" />
 
     <!-- Icons -->
@@ -22,10 +19,7 @@
     <meta property="og:site_name" content="Plicely" />
     <meta property="og:url" content="https://plicely.heokuapp.com" />
     <meta property="og:type" content="article" />
-    <meta
-      property="og:image"
-      content="https://plicely.heokuapp.com/android-chrome-256x256.png"
-    />
+    <meta property="og:image" content="https://plicely.heokuapp.com/android-chrome-256x256.png" />
     <meta property="og:description" content="Placetime marks you can share." />
 
     <!-- Twitter -->
@@ -33,29 +27,30 @@
     <meta name="twitter:creator" content="@albertomiranda" />
     <meta name="twitter:title" content="Plicely" />
     <meta name="twitter:description" content="Placetime marks you can share." />
-    <meta
-      name="twitter:image"
-      content="https://plicely.herokuapp.com/android-chrome-256x256.png"
-    />
+    <meta name="twitter:image" content="https://plicely.herokuapp.com/android-chrome-256x256.png" />
     <meta name="twitter:url" content="https://plicely.heokuapp.com" />
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:200,400"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,400" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <h1>GeoLocation Experiment</h1>
     <p id="error"></p>
 
-    <button id="addBtn" onclick="addMark()"><span>+</span></button>
+    <button id="addMarkBtn"><span>+</span></button>
 
     <label>Marks</label>
     <ul id="marks">
       <li>
         <label>Somewhere</label>
         <pre>LAT -34.5881255 / LON -58.4360069</pre>
+        <pre class="date">Dec 28, 2018 @ 16:02</pre>
+      </li>
+      <span class="elapsed">1 hour, 10 minutes</span>
+      <li>
+        <label>Somewhere</label>
+        <pre>LAT -34.5881255 / LON -58.4360069</pre>
+        <pre class="date">Dec 28, 2018 @ 16:22</pre>
       </li>
     </ul>
 
