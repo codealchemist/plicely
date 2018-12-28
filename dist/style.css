@@ -1,0 +1,88 @@
+body {
+  background: black;
+  color: white;
+  font-size: 4em;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
+  margin: 20px 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+#error {
+  color: red;
+}
+
+#location {
+  color: lightblue;
+}
+
+p {
+  font-size: 0.7em;
+}
+
+label {
+  font-weight: 200;
+  display: inline-block;
+  margin-top: 1em;
+}
+
+#addBtn {
+  width: 30vw;
+  height: 30vw;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  font-size: 2em;
+  margin: 0 auto;
+  padding: 0;
+  background: black;
+  color: #eee;
+  display: flex;
+  align-items: center;
+}
+
+#addBtn:hover {
+  background: #bbb;
+  color: black;
+  cursor: pointer;
+}
+
+#addBtn span {
+  margin: -5px auto 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 5px;
+}
+
+li {
+  font-size: 0.6em;
+  text-align: left;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+li:nth-child(odd) {
+  background: #222;
+  color: #eee;
+}
+
+li:nth-child(even) {
+  color: #ddd;
+}
+
+pre.date {
+  color: #21a6ff;
+}
+
+*:focus {
+  outline: none;
+}
