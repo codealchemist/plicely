@@ -172,8 +172,8 @@
         const month = months[date.getMonth()];
         const dayName = days[date.getDay()];
         const dayNum = date.getDate();
-        const minute = date.getMinutes();
-        const hour = date.getHours();
+        const minute = `0${date.getMinutes()}`.substr(-2);
+        const hour = `0${date.getHours()}`.substr(-2);
         const dateString = `${dayName} ${dayNum}, ${month} ${year} @ ${hour}:${minute}`;
 
         const name = prompt('Location name') || 'Unknown';
