@@ -11,8 +11,25 @@ body {
   padding: 0;
 }
 
+body:before {
+  background: url(world.png) no-repeat;
+  background-size: contain;
+  content: "";
+  width: 90%;
+  height: 90%;
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -1%;
+  z-index: -1;
+}
+
 h1 {
-  font-weight: 400;
+  /* font-weight: 400; */
+  font-family: "Satisfy", cursive;
+  margin: 0;
 }
 
 #error {
@@ -30,30 +47,34 @@ p {
 label {
   font-weight: 200;
   display: inline-block;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
-#addMarkBtn {
+#add-mark-button {
   width: 30vw;
   height: 30vw;
-  border: 1px solid #eee;
-  border-radius: 50%;
   font-size: 2em;
-  margin: 0 auto;
+  margin: 15px auto;
   padding: 0;
-  background: black;
-  color: #eee;
   display: flex;
   align-items: center;
+  border-radius: 50%;
+  border-color: transparent;
+  /* border: 1px solid #eee; */
+  /* color: #eee; */
+  /* background: black; */
+
+  background: url("android-chrome-256x256.png") no-repeat;
+  background-size: cover;
 }
 
-#addMarkBtn:hover {
-  background: #bbb;
-  color: black;
+#add-mark-button:hover {
+  /* background: #bbb;
+  color: black; */
   cursor: pointer;
 }
 
-#addMarkBtn span {
+#add-mark-button span {
   margin: -5px auto 0;
 }
 
@@ -68,11 +89,11 @@ li {
   text-align: left;
   padding: 15px;
   border-radius: 5px;
-  border: 1px solid #888;
+  /* border: 1px solid #888; */
 }
 
 li:nth-child(odd) {
-  /* background: #222; */
+  background: #222;
   color: #eee;
 }
 
@@ -97,7 +118,8 @@ pre.date {
   border: 1px solid #21a6ff;
   border-radius: 25px;
   padding: 5px 15px;
-  background: #21a6ff;
+  background: black;
+  color: #21a6ff;
   margin: 15px;
   display: inline-block;
 }

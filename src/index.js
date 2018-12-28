@@ -17,11 +17,12 @@ const months = [
 ]
 const $error = document.getElementById('error')
 const $marks = document.getElementById('marks')
-const $addMarkBtn = document.getElementById('addMarkBtn')
+const $addMarkButton = document.getElementById('add-mark-button')
+const $addMarkLabel = document.getElementById('add-mark-label')
 const marks = []
 let lastMark = {}
 
-$addMarkBtn.addEventListener('click', addMark)
+$addMarkButton.addEventListener('click', addMark)
 
 function addMark () {
   navigator.geolocation.getCurrentPosition(onLocation, onError)
@@ -32,9 +33,9 @@ function getElapsedTime (date1, date2) {
   return date1.getTime() - date2.getTime()
 }
 
+// Adds mark after getting geolocation.
 function onLocation ({ coords }) {
   const { latitude, longitude } = coords
-  console.log('Add mark for:', coords)
   const date = new Date()
   const year = date.getFullYear()
   const month = months[date.getMonth()]
@@ -54,10 +55,15 @@ function onLocation ({ coords }) {
   }
   lastMark = mark
   marks.push(mark)
+  console.log('MARK added', mark)
 
   // HTML output.
   let elapsedHtml = ''
-  if (elapsed) elapsedHtml = `<span class="elapsed">${humanize(elapsed, { round: true })}</span>`
+  if (elapsed) {
+    elapsedHtml = `<span class="elapsed">${humanize(elapsed, {
+      round: true
+    })}</span>`
+  }
   $marks.innerHTML += `
     ${elapsedHtml}
     <li>
@@ -67,6 +73,9 @@ function onLocation ({ coords }) {
     </li>
   `
   document.activeElement.blur()
+
+  // Update label.
+  $addMarkLabel.innerHTML = 'Marks'
 }
 
 function onError (e) {
