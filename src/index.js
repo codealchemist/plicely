@@ -35,6 +35,10 @@ function getElapsedTime (date1, date2) {
 
 // Adds mark after getting geolocation.
 function onLocation ({ coords }) {
+  let name = window.prompt('Location name')
+  if (name === null) return
+  name = name || 'Unknown'
+
   const { latitude, longitude } = coords
   const date = new Date()
   const year = date.getFullYear()
@@ -44,7 +48,6 @@ function onLocation ({ coords }) {
   const minute = `0${date.getMinutes()}`.substr(-2)
   const hour = `0${date.getHours()}`.substr(-2)
   const dateString = `${dayName} ${dayNum}, ${month} ${year} @ ${hour}:${minute}`
-  const name = window.prompt('Location name') || 'Unknown'
 
   const elapsed = getElapsedTime(date, lastMark.date)
   const mark = {
