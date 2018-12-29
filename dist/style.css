@@ -14,9 +14,10 @@ body {
 body:before {
   background: url(world.png) no-repeat;
   background-size: contain;
+  background-position: bottom;
   content: "";
   width: 90%;
-  height: 90%;
+  height: 100%;
   display: block;
   position: fixed;
   left: 0;
