@@ -70,9 +70,11 @@ function onLocation ({ coords }) {
   $marks.innerHTML += `
     ${elapsedHtml}
     <li>
-      <label>${name}</label>
-      <pre>LAT ${latitude} / LON ${longitude}</pre>
-      <pre class="date">${dateString}</pre>
+      <a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}" target="blank">
+        <label>${name}</label>
+        <pre>LAT ${latitude} / LON ${longitude}</pre>
+        <pre class="date">${dateString}</pre>
+      </a>
     </li>
   `
   document.activeElement.blur()

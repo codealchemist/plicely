@@ -33,6 +33,11 @@ h1 {
   margin: 0;
 }
 
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
 #error {
   color: red;
 }
@@ -90,7 +95,7 @@ li {
   text-align: left;
   padding: 15px;
   border-radius: 5px;
-  /* border: 1px solid #888; */
+  cursor: pointer;
 }
 
 li:nth-child(odd) {
