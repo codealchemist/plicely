@@ -30,7 +30,6 @@
   "homepage": "https://github.com/codealchemist/plicely#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "https-enforcer": "^1.0.0",
     "humanize-duration": "^3.16.0"
   },
   "devDependencies": {
