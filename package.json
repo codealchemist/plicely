@@ -4,8 +4,7 @@
   "description": "Placetime marks you can share.",
   "main": "src/index.js",
   "scripts": {
-    "dist": "http-server dist",
-    "dev": "http-server -S -C cert.pem -o dist",
+    "dist": "node src/server",
     "start": "webpack-dev-server --open --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1",
     "gencert": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem",
@@ -30,7 +29,8 @@
   },
   "homepage": "https://github.com/codealchemist/plicely#readme",
   "dependencies": {
-    "http-server": "^0.11.1",
+    "express": "^4.16.4",
+    "https-enforcer": "^1.0.0",
     "humanize-duration": "^3.16.0"
   },
   "devDependencies": {
