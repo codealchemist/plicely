@@ -130,6 +130,12 @@ pre.date {
   display: inline-block;
 }
 
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 *:focus {
   outline: none;
 }
