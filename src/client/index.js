@@ -1,4 +1,8 @@
 import humanize from 'humanize-duration'
+import OfflinePluginRuntime from 'offline-plugin/runtime'
+import './style.css'
+
+OfflinePluginRuntime.install()
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const months = [
@@ -72,7 +76,7 @@ function onLocation ({ coords }) {
     <li>
       <a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}" target="blank">
         <label>${name}</label>
-        <pre>LAT ${latitude} / LON ${longitude}</pre>
+        <pre class="truncate">LAT ${latitude} / LON ${longitude}</pre>
         <pre class="date">${dateString}</pre>
       </a>
     </li>
