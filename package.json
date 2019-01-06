@@ -29,8 +29,12 @@
   },
   "homepage": "https://github.com/codealchemist/plicely#readme",
   "dependencies": {
+    "clipboard": "^2.0.4",
     "express": "^4.16.4",
-    "humanize-duration": "^3.16.0"
+    "humanize-duration": "^3.16.0",
+    "nanoid": "^2.0.0",
+    "signalhub": "^4.9.0",
+    "simple-peer": "^9.2.0"
   },
   "devDependencies": {
     "css-loader": "^2.1.0",

@@ -18,6 +18,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   target: 'web',
+  node: {
+    fs: 'empty'
+  },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',

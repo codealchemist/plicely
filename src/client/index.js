@@ -1,3 +1,4 @@
+import peer from './peer'
 import humanize from 'humanize-duration'
 import OfflinePluginRuntime from 'offline-plugin/runtime'
 import './style.css'
@@ -26,7 +27,12 @@ const $addMarkLabel = document.getElementById('add-mark-label')
 const marks = []
 let lastMark = {}
 
-$addMarkButton.addEventListener('click', addMark)
+// Only the initiator can add marks.
+if (peer.isInitiator) {
+  $addMarkButton.style.display = 'flex'
+  $addMarkButton.addEventListener('click', addMark)
+  $addMarkLabel.innerHTML = 'Add Marks'
+}
 
 function addMark () {
   navigator.geolocation.getCurrentPosition(onLocation, onError)
@@ -58,13 +64,26 @@ function onLocation ({ coords }) {
     ...coords,
     name,
     date,
+    dateString,
     elapsed
   }
   lastMark = mark
   marks.push(mark)
   console.log('MARK added', mark)
+  peer.send({ mark })
 
   // HTML output.
+  appendMark(mark)
+
+  // Hide keyboard on mobile.
+  document.activeElement.blur()
+
+  // Update label on first added mark.
+  if (marks.length === 1) $addMarkLabel.innerHTML = 'Marks'
+}
+
+function appendMark (mark) {
+  const { name, elapsed, latitude, longitude, dateString } = mark
   let elapsedHtml = ''
   if (elapsed) {
     elapsedHtml = `<span class="elapsed">${humanize(elapsed, {
@@ -81,13 +100,24 @@ function onLocation ({ coords }) {
       </a>
     </li>
   `
-  document.activeElement.blur()
-
-  // Update label.
-  $addMarkLabel.innerHTML = 'Marks'
 }
 
 function onError (e) {
   console.log('ERROR', e)
   $error.innerHTML = `ERROR: ${e.message}`
 }
+
+peer.onData(data => {
+  // TODO: sync whole collection
+
+  const message = JSON.parse(data)
+  console.log('Peer GOT DATA', data)
+  console.log('Peer GOT MESSAGE', message)
+  const { payload } = message || {}
+  const { mark } = payload || {}
+  if (mark.name) appendMark(mark)
+})
+
+peer.onError(error => {
+  console.error('Peer GOT ERROR', error)
+})
