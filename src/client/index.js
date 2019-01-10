@@ -35,7 +35,21 @@ if (peer.isInitiator) {
 }
 
 function addMark () {
-  navigator.geolocation.getCurrentPosition(onLocation, onError)
+  console.log('ADD MARK')
+  const options = {
+    timeout: 3000,
+    enableHighAccuracy: true,
+    maximumAge: Infinity
+  }
+
+  // Mock
+  // onLocation({
+  //   coords: {
+  //     latitude: 34.9809098,
+  //     longitude: 38.98798798
+  //   }
+  // })
+  navigator.geolocation.getCurrentPosition(onLocation, onError, options)
 }
 
 function getElapsedTime (date1, date2) {
@@ -45,6 +59,7 @@ function getElapsedTime (date1, date2) {
 
 // Adds mark after getting geolocation.
 function onLocation ({ coords }) {
+  console.log('GOT LOCATION', coords)
   let name = window.prompt('Location name')
   if (name === null) return
   name = name || 'Unknown'

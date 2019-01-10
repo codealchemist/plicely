@@ -39,9 +39,7 @@ class Peer {
     this.channelName = this.initiatorId || this.id
     console.log('CHANNEL', this.channelName)
     this.hub = signalhub('plicely', ['https://plicely-signalhub.herokuapp.com'])
-    this.hub
-      .subscribe(this.channelName)
-      .on('data', message => this.onSignalMessage(message))
+    this.hub.subscribe(this.channelName).on('data', message => this.onSignalMessage(message))
 
     // If not the initiator, request offer to initiator.
     if (!this.isInitiator) {
@@ -125,6 +123,7 @@ class Peer {
   }
 
   send (data) {
+    if (!this.peer.connected) return
     const message = JSON.stringify({ payload: data })
     console.log('Peer SEND', message)
     this.peer.send(message)

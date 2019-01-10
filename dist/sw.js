@@ -18,12 +18,12 @@ var __wpo = {
   "hashesMap": {
     "f720b6244b0fb73f345299c0feed4d08556c8cc5": "./76e5a546b96c58b6854a8f217848808e.png",
     "70d149f92b72b1cff4f02898b6066228171d2c42": "./6503c1267b000ace2e068edeee2de368.png",
-    "1a61bbdc6522f8d4459d53c0db96806f2fff0316": "./bundle.js",
-    "108f5c622f5ad23162fb94e5c682673b509fd88c": "./"
+    "1a8615776cbf43caa37ecf72bca384e60310189e": "./bundle.js",
+    "81d52e424b273e246a55ec44eae2cd107adcb5e1": "./"
   },
   "strategy": "changed",
   "responseStrategy": "cache-first",
-  "version": "1/10/2019, 3:05:18 PM",
+  "version": "1/10/2019, 4:20:47 PM",
   "name": "webpack-offline",
   "pluginVersion": "5.0.6",
   "relativePaths": true
