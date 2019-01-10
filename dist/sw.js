@@ -6,28 +6,24 @@ var __wpo = {
       "./bundle.js",
       "./",
       "/",
-      "./site.webmanifest",
-      "./favicon-16x16.png",
-      "./favicon-32x32.png"
+      "./site.webmanifest"
     ],
     "additional": [],
     "optional": []
   },
   "externals": [
     "/",
-    "./site.webmanifest",
-    "./favicon-16x16.png",
-    "./favicon-32x32.png"
+    "./site.webmanifest"
   ],
   "hashesMap": {
     "f720b6244b0fb73f345299c0feed4d08556c8cc5": "./76e5a546b96c58b6854a8f217848808e.png",
     "70d149f92b72b1cff4f02898b6066228171d2c42": "./6503c1267b000ace2e068edeee2de368.png",
-    "7f1fc6642e5d886b3fc681f93373ba18bbf4431a": "./bundle.js",
-    "c0ca8d70a1818e602f3bf55b2507eb37a6508c33": "./"
+    "c553d89482036f898f9645ce249408fcfbd566f0": "./bundle.js",
+    "44a01ea8e225924ec3b5c86af24b0c1e1d45ac26": "./"
   },
   "strategy": "changed",
   "responseStrategy": "cache-first",
-  "version": "2019-1-1 14:03:49",
+  "version": "2019-1-5 19:00:01",
   "name": "webpack-offline",
   "pluginVersion": "5.0.6",
   "relativePaths": true
