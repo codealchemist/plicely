@@ -1,6 +1,6 @@
 {
   "name": "plicely",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Placetime marks you can share.",
   "main": "src/index.js",
   "scripts": {
