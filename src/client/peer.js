@@ -16,6 +16,12 @@ class Peer {
     if (this.isInitiator) this.setSharingUrl()
 
     this.initSignaling()
+    this.initPeer()
+    this.connectedPeers = []
+  }
+
+  initPeer () {
+    console.log('init peer')
     this.peer = new SimplePeer({
       initiator: this.isInitiator,
       trickle: false
@@ -33,52 +39,8 @@ class Peer {
     })
   }
 
-  initSignaling () {
-    console.log('PEER ID', this.id)
-    console.log('INITIATOR ID:', this.initiatorId)
-    this.channelName = this.initiatorId || this.id
-    console.log('CHANNEL', this.channelName)
-    this.hub = signalhub('plicely', ['https://plicely-signalhub.herokuapp.com'])
-    this.hub.subscribe(this.channelName).on('data', message => this.onSignalMessage(message))
-
-    // If not the initiator, request offer to initiator.
-    if (!this.isInitiator) {
-      console.log('Signaling: SEND REQUEST MSG')
-      this.hub.broadcast(this.channelName, { id: this.id, type: 'request' })
-    }
-  }
-
-  onSignalMessage (message) {
-    console.log('new message received', message)
-    const { signal, id, type } = message || {}
-
-    // Ignore own messages.
-    if (id === this.id) return
-
-    if (type === 'request' && this.isInitiator) {
-      this.hub.broadcast(this.channelName, {
-        id: this.id,
-        type: 'offer',
-        signal: this.signal
-      })
-      return
-    }
-
-    if (!signal) return
-    this.peer.signal(signal)
-  }
-
-  getInitiatorId () {
-    const hash = window.location.hash.substr(1)
-    return hash
-  }
-
-  reconnect () {
-    console.log('RECONNECT')
-    // TODO
-  }
-
   setPeerEvents () {
+    console.log('set peer events')
     this.peer.on('error', err => {
       console.log('error', err)
       if (typeof this.onErrorCallback === 'function') {
@@ -99,7 +61,6 @@ class Peer {
 
     this.peer.on('connect', () => {
       console.log('CONNECT')
-      this.hub.close()
     })
 
     this.peer.on('data', data => {
@@ -110,6 +71,58 @@ class Peer {
     })
 
     window.peer = this.peer
+  }
+
+  initSignaling () {
+    console.log('PEER ID', this.id)
+    console.log('INITIATOR ID:', this.initiatorId)
+    this.channelName = this.initiatorId || this.id
+    console.log('CHANNEL', this.channelName)
+    this.hub = signalhub('plicely', ['https://plicely-signalhub.herokuapp.com'])
+    this.hub
+      .subscribe(this.channelName)
+      .on('data', message => this.onSignalMessage(message))
+
+    // If not the initiator, request offer to initiator.
+    if (!this.isInitiator) {
+      console.log('Signaling: SEND REQUEST MSG')
+      this.hub.broadcast(this.channelName, { id: this.id, type: 'request' })
+    }
+  }
+
+  onSignalMessage (message) {
+    console.log('new message received', message)
+    const { signal, id, type } = message || {}
+
+    // Ignore own messages.
+    if (id === this.id) return
+
+    // Only the initiator will answer with offers to other peers.
+    // Send offer using signalling channel.
+    if (this.isInitiator && type === 'request') {
+      this.hub.broadcast(this.channelName, {
+        id: this.id,
+        type: 'offer',
+        signal: this.signal
+      })
+      return
+    }
+
+    // Only normal peers will use signalling data from the initiator.
+    if (!this.isInitiator && type === 'request') return
+    if (!signal) return
+    this.peer.signal(signal)
+  }
+
+  getInitiatorId () {
+    const hash = window.location.hash.substr(1)
+    return hash
+  }
+
+  reconnect () {
+    console.log('RECONNECT')
+    this.destroy()
+    this.initPeer()
   }
 
   onError (callback) {
@@ -127,6 +140,10 @@ class Peer {
     const message = JSON.stringify({ payload: data })
     console.log('Peer SEND', message)
     this.peer.send(message)
+  }
+
+  destroy () {
+    this.peer.destroy()
   }
 }
 
